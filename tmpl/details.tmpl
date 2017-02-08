@@ -126,6 +126,20 @@ if (data.defaultvalue && (data.defaultvaluetype === 'object' || data.defaultvalu
     </dd>
     <?js } ?>
 
+    <?js if (data.sig && sig.length) {?>
+    <dt class="tag-sig">Signature:</dt>
+    <dd class="tag-sig">
+        <ul><li><code><?js= data.sig ?></code></li></ul>
+    </dd>
+    <?js } ?>
+
+    <?js if (data.category && category.length) {?>
+    <dt class="tag-category">Category:</dt>
+    <dd class="tag-category">
+        <ul><li><i><?js= data.category ?></i></li></ul>
+    </dd>
+    <?js } ?>
+
     <?js if (data.todo && todo.length) {?>
     <dt class="tag-todo">To Do:</dt>
     <dd class="tag-todo">
