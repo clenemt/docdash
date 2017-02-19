@@ -4,6 +4,11 @@
   "description": "A clean, responsive documentation template theme for JSDoc 3 inspired by lodash and minami",
   "main": "publish.js",
   "scripts": {
+    "test": "better-npm-run test",
+    "sync": "better-npm-run sync",
+    "watch": "better-npm-run watch"
+  },
+  "betterScripts": {
     "test": "jsdoc -c fixtures/fixtures.conf.json",
     "sync": "browser-sync start -s ../fixtures-doc -f ../fixtures-doc --reload-delay 1000 --no-ui --no-notify",
     "watch": "watch-run -d 1000 -p tmpl/**,static/** \"npm run test\""
@@ -15,7 +20,8 @@
   "devDependencies": {
     "jsdoc": "latest",
     "browser-sync": "latest",
-    "watch-run": "latest"
+    "watch-run": "latest",
+    "better-npm-run": "=0.0.14"
   },
   "author": "Clement Moron <clement.moron@gmail.com>",
   "license": "Apache-2.0",

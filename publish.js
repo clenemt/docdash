@@ -362,12 +362,13 @@ function linktoExternal(longName, name) {
  * @param {array<object>} members.tutorials
  * @param {array<object>} members.events
  * @param {array<object>} members.interfaces
- * @return {s
- ring} The HTML for the navigation sidebar.
+ * @return {string} The HTML for the navigation sidebar.
  */
 
 function buildNav(members) {
-    var nav = '<h2><a href="index.html">Home</a></h2>';
+    var packageInfo = ( find({kind: 'package'}) || [] ) [0];
+    var title = (env.conf.title || 'Home') +  ' ' + (packageInfo && packageInfo.version || '');
+    var nav = '<h2><a href="index.html">' + title + '</a></h2>';
     var seen = {};
     var seenTutorials = {};
 
@@ -604,8 +605,9 @@ exports.publish = function(taffyData, opts, tutorials) {
     // index page displays information from package.json and lists files
     var files = find({kind: 'file'});
     var packages = find({kind: 'package'});
+    var moduleName = (env.conf.title || 'Home') +  ' ' + (packageInfo && packageInfo.version || '');
 
-    generate('', 'Home',
+  generate('', moduleName,
         packages.concat(
             [{kind: 'mainpage', readme: opts.readme, longname: (opts.mainpagetitle) ? opts.mainpagetitle : 'Main Page'}]
         ).concat(files),
