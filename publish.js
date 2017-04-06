@@ -366,9 +366,7 @@ function linktoExternal(longName, name) {
  */
 
 function buildNav(members) {
-    var packageInfo = ( find({kind: 'package'}) || [] ) [0];
-    var title = (env.conf.title || 'Home') +  ' ' + (packageInfo && packageInfo.version || '');
-    var nav = '<h2><a href="index.html">' + title + '</a></h2>';
+    var nav = '';
     var seen = {};
     var seenTutorials = {};
 
@@ -376,7 +374,7 @@ function buildNav(members) {
     nav += buildMemberNav(members.modules, 'Modules', {}, linkto);
     nav += buildMemberNav(members.externals, 'Externals', seen, linktoExternal);
     nav += buildMemberNav(members.events, 'Events', seen, linkto);
-    nav += buildMemberNav(members.namespaces, 'Namespaces', seen, linkto);
+    nav += buildMemberNav(members.namespaces, '', seen, linkto);
     nav += buildMemberNav(members.mixins, 'Mixins', seen, linkto);
     nav += buildMemberNav(members.tutorials, 'Tutorials', seenTutorials, linktoTutorial);
     nav += buildMemberNav(members.interfaces, 'Interfaces', seen, linkto);
@@ -401,6 +399,23 @@ function buildNav(members) {
     }
 
     return nav;
+}
+
+function buildHeader() {
+  var packageInfo = ( find({kind: 'package'}) || [] ) [0];
+  var title = (env.conf.title || 'Home') +  ' ' + (packageInfo && packageInfo.version || '');
+  var indexUrl = 'index.html';
+  var githubUrl = env.conf.github;
+  var gitterUrl = env.conf.gitter;
+  var header = '';
+
+  header += '<a href="' + indexUrl + '"><strong>' + title + '</strong></a>';
+  header += '<ul>';
+  header += '<li><a href="' + githubUrl +  '">GitHub</a></li>';
+  header += '<li><a href="' + gitterUrl + '">Discuss</a></li>';
+  header += '</ul>';
+
+  return header;
 }
 
 /**
@@ -591,6 +606,7 @@ exports.publish = function(taffyData, opts, tutorials) {
 
     // once for all
     view.nav = buildNav(members);
+    view.header = buildHeader();
     attachModuleSymbols( find({ longname: {left: 'module:'} }), members.modules );
 
     // generate the pretty-printed source files first so other pages can link to them

@@ -647,3 +647,61 @@ span.param-type, .params td .param-type, .param-type dd {
   margin-left: -14px;
   margin-right: 5px;
 }
+
+/** Custom extensions **/
+body > header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: block;
+  min-height: 50px;
+  margin-bottom: 20px;
+}
+
+body > header {
+  color: #fff;
+  background-color: #849;
+  box-shadow: 0 .25em .5em #d3d3d3;
+  border-bottom: 1px solid #d3d3d3;
+  margin: 0;
+  padding: .75em 10px .75em 40px;
+  z-index: 1000;
+}
+
+body > header a {
+  color: #e1d0e6;
+}
+
+body > header > ul {
+  float: right;
+  margin: 0;
+}
+
+body > header > ul li {
+  position: relative;
+  float: left;
+  display: block;
+}
+
+body > header > ul li a {
+  padding: 10px 15px;
+  font-size: 14px;
+}
+body > header > ul li a:hover {
+  color: #fff;
+}
+
+body > nav {
+  top: 50px;
+}
+
+#main {
+  margin-top: 50px;
+}
+
+.section-id {
+  height: 0;
+  position: relative;
+  top: -50px;
+}
