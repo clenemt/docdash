@@ -698,6 +698,7 @@ body > header > ul li a:hover {
 
 body > nav {
   top: 50px;
+  height: calc(100% - 50px);
 }
 
 #main {
