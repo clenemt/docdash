@@ -317,7 +317,7 @@ function buildMemberNav(items, itemHeading, itemsSeen, linktoFn) {
                     itemsNav += "</ul>";
                 }
 
-                if (methods.length) {
+                if (methods.length && itemHeading !== 'Classes') {
                     itemsNav += "<ul class='methods'>";
 
                     methods.forEach(function (method) {
