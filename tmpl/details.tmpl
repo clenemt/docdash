@@ -131,6 +131,13 @@ if (data.defaultvalue && (data.defaultvaluetype === 'object' || data.defaultvalu
     </dd>
     <?js } ?>
 
+    <?js if (data.aliases && aliases.length) {?>
+    <dt class="tag-category">Aliases:</dt>
+    <dd class="tag-category">
+        <ul><li><i><?js= data.aliases ?></i></li></ul>
+    </dd>
+    <?js } ?>
+
     <?js if (data.category && category.length) {?>
     <dt class="tag-category">Category:</dt>
     <dd class="tag-category">
