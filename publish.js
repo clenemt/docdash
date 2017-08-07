@@ -407,10 +407,12 @@ function buildHeader() {
   var indexUrl = 'index.html';
   var githubUrl = env.conf.github;
   var gitterUrl = env.conf.gitter;
-  var header = '';
+  var latestUrl = env.conf.latest;
 
+  var header = '';
   header += '<a href="' + indexUrl + '"><strong>' + title + '</strong></a>';
   header += '<ul>';
+  header += '<li><a href="' + latestUrl +  '">Latest Docs</a></li>';
   header += '<li><a href="' + githubUrl +  '">GitHub</a></li>';
   header += '<li><a href="' + gitterUrl + '">Discuss</a></li>';
   header += '</ul>';
