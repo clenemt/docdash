@@ -335,6 +335,7 @@ footer {
 .prettyprint {
   font-size: 14px;
   overflow: auto;
+  background-color: #0d152a;
 }
 
 .prettyprint.source {
@@ -348,7 +349,7 @@ footer {
 .prettyprint code {
   line-height: 18px;
   display: block;
-  background-color: #0d152a;
+  background-color: transparent;
   color: #4D4E53;
 }
 
