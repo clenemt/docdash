@@ -197,7 +197,6 @@ nav ul a,
 nav ul a:active {
   font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
   line-height: 18px;
-  padding: 0;
   display: block;
   font-size: 14px;
 }
@@ -430,7 +429,7 @@ footer {
 }
 
 .params td, .params th, .props td, .props th {
-   margin: 0px;
+   margin: 0;
    text-align: left;
    vertical-align: top;
    padding: 10px;
@@ -677,14 +676,14 @@ span.param-type, .params td .param-type, .param-type dd {
 }
 
 [data-type="method"] {
-  padding-top: 7px;
-  padding-bottom: 7px;
   padding-right: 4px;
 }
 [data-type="method"]:hover {
   background-color: #e4e4e4 !important;
 }
 [data-type="method"] a {
+  padding-top: 7px;
+  padding-bottom: 7px;
   color: #ad6cbe;
   font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
 }
