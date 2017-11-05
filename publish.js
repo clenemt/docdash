@@ -42,6 +42,15 @@ function hashToLink(doclet, hash) {
     return '<a href="' + url + '">' + hash + '</a>';
 }
 
+function categoryLink(methodLongName, methodName, category) {
+    var url = linkto(methodLongName, methodName);
+    const label = '<span data-category="List" class="label label-category">' + category + '</span>';
+
+    url = url.replace(/(<\/a>)$/, label + ' $1');
+
+    return url;
+}
+
 function needsSignature(doclet) {
     var needsSig = false;
 
@@ -322,7 +331,7 @@ function buildMemberNav(items, itemHeading, itemsSeen, linktoFn) {
 
                     methods.forEach(function (method) {
                         itemsNav += "<li data-type='method'>";
-                        itemsNav += linkto(method.longname, method.name);
+                        itemsNav += categoryLink(method.longname, method.name, method.category);
                         itemsNav += "</li>";
                     });
 
