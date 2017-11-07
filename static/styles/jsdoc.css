@@ -13,7 +13,7 @@ body {
   color: #4d4e53;
   background-color: #F8F8F8;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 20px 0 0;
   font-family: 'Helvetica Neue', Helvetica, sans-serif;
   font-size: 16px;
   line-height: 160%;
@@ -134,7 +134,7 @@ tt, code, kbd, samp {
 #main {
   float: right;
   min-width: 360px;
-  width: calc(100% - 240px);
+  width: calc(100% - 270px);
 }
 
 header {
@@ -165,7 +165,7 @@ section {
 nav {
   float: left;
   display: block;
-  width: 260px;
+  width: 280px;
   background-color: #F8F8F8;
   overflow: auto;
   position: fixed;
@@ -180,7 +180,7 @@ nav h3 {
   font-weight: 700;
   line-height: 24px;
   margin: 15px 0 10px;
-  padding: 0;
+  padding: 0 0 0 20px;
   color: #000;
 }
 
@@ -207,7 +207,7 @@ nav a:active {
 }
 
 nav > ul {
-  padding: 0;
+  padding: 0 0 0 20px;
 }
 
 nav > ul > li > a {
@@ -733,12 +733,46 @@ body > header > ul li a:hover {
 }
 
 body > nav {
-  top: 50px;
-  height: calc(100% - 50px);
+  top: 100px;
+  padding-bottom: 10px;
+  height: calc(100% - 100px);
 }
 
 #main {
   margin-top: 50px;
+}
+
+#filter {
+  position: fixed;
+  top: 50px;
+  left: 0;
+  width: 280px;
+  height: 50px;
+  background-color: #F4F4F4;
+  border-bottom: 1px solid #CCCCCC;
+  border-right: 1px solid #CCCCCC;
+}
+
+#filter input {
+  width: 240px;
+  height: 30px;
+  line-height: 30px;
+  margin-left: 20px;
+  margin-top: 10px;
+  border: 1px solid #ccc;
+  font-size: 15px;
+  border-radius: 4px;
+  padding-left: 10px;
+}
+
+#filter input:focus {
+  outline: none !important;
+  border-color: #884499;
+  box-shadow: 0 0 3px #884499;
+}
+
+#filter input::placeholder {
+  color: #CCCCCC;
 }
 
 .section-id {
