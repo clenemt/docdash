@@ -120,8 +120,22 @@ if (data.defaultvalue && (data.defaultvaluetype === 'object' || data.defaultvalu
     <?js if (data.sig && sig.length) {?>
     <dt class="tag-sig">Signature:</dt>
     <dd class="tag-sig">
-        <ul><li><pre><code><?js= data.sig ?></code></pre></li></ul>
+        <ul>
+            <?js data.sig.forEach(function(sig) { ?>
+              <li><code><?js= sig ?></code></li>
+            <?js }) ?>
+        </ul>
     </dd>
+    <?js if (data.typedef && typedef.length) {?>
+        <dt class="tag-sig hidden">Signature:</dt>
+        <dd class="tag-sig">
+            <ul>
+                <?js data.typedef.forEach(function(typedef) { ?>
+                  <li><code><?js= typedef ?></code></li>
+                <?js }) ?>
+            </ul>
+        </dd>
+    <?js } ?>
     <?js } ?>
 
     <?js if (data.alias && alias.length) {?>

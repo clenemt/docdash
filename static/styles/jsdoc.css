@@ -23,6 +23,10 @@ img {
   max-width: 100%;
 }
 
+.hidden {
+  visibility: hidden;
+}
+
 a,
 a:active {
   color: #606;
@@ -246,7 +250,7 @@ nav > h2 > a {
 
 footer {
   color: hsl(0, 0%, 28%);
-  margin-left: 250px;
+  margin-left: 290px;
   display: block;
   padding: 15px;
   font-style: italic;
@@ -318,12 +322,17 @@ footer {
 }
 
 .details pre.prettyprint {
-   margin: 0
+  margin: 0;
 }
 
-.details .tag-sig pre {
+.details .tag-sig {
   margin: 0
 }
+
+.details .tag-sig li {
+  margin-left: 80px;
+}
+
 
 .details .object-value {
    padding-top: 0
@@ -343,6 +352,7 @@ footer {
 .prettyprint {
   font-size: 14px;
   overflow: auto;
+  background-color: #000000;
 }
 
 .prettyprint.source {
@@ -415,7 +425,7 @@ footer {
 }
 
 .params .type {
-  white-space: nowrap;
+  white-space: normal;
 }
 
 .params code {
