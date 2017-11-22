@@ -42,6 +42,15 @@ function hashToLink(doclet, hash) {
     return '<a href="' + url + '">' + hash + '</a>';
 }
 
+function categoryLink(methodLongName, methodName, category) {
+    var url = linkto(methodLongName, methodName);
+    const label = '<span data-category="List" class="label label-category">' + category + '</span>';
+
+    url = url.replace(/(<\/a>)$/, label + ' $1');
+
+    return url;
+}
+
 function needsSignature(doclet) {
     var needsSig = false;
 
@@ -317,12 +326,12 @@ function buildMemberNav(items, itemHeading, itemsSeen, linktoFn) {
                     itemsNav += "</ul>";
                 }
 
-                if (methods.length) {
+                if (methods.length && itemHeading !== 'Classes') {
                     itemsNav += "<ul class='methods'>";
 
                     methods.forEach(function (method) {
                         itemsNav += "<li data-type='method'>";
-                        itemsNav += linkto(method.longname, method.name);
+                        itemsNav += categoryLink(method.longname, method.name, method.category);
                         itemsNav += "</li>";
                     });
 
@@ -362,12 +371,11 @@ function linktoExternal(longName, name) {
  * @param {array<object>} members.tutorials
  * @param {array<object>} members.events
  * @param {array<object>} members.interfaces
- * @return {s
- ring} The HTML for the navigation sidebar.
+ * @return {string} The HTML for the navigation sidebar.
  */
 
 function buildNav(members) {
-    var nav = '<h2><a href="index.html">Home</a></h2>';
+    var nav = '';
     var seen = {};
     var seenTutorials = {};
 
@@ -375,7 +383,7 @@ function buildNav(members) {
     nav += buildMemberNav(members.modules, 'Modules', {}, linkto);
     nav += buildMemberNav(members.externals, 'Externals', seen, linktoExternal);
     nav += buildMemberNav(members.events, 'Events', seen, linkto);
-    nav += buildMemberNav(members.namespaces, 'Namespaces', seen, linkto);
+    nav += buildMemberNav(members.namespaces, '', seen, linkto);
     nav += buildMemberNav(members.mixins, 'Mixins', seen, linkto);
     nav += buildMemberNav(members.tutorials, 'Tutorials', seenTutorials, linktoTutorial);
     nav += buildMemberNav(members.interfaces, 'Interfaces', seen, linkto);
@@ -400,6 +408,27 @@ function buildNav(members) {
     }
 
     return nav;
+}
+
+function buildHeader() {
+  var packageInfo = ( find({kind: 'package'}) || [] ) [0];
+  var title = (env.conf.title || 'Home') +  ' ' + (packageInfo && packageInfo.version || '');
+  var indexUrl = 'index.html';
+  var githubUrl = env.conf.github;
+  var gitterUrl = env.conf.gitter;
+  var latestUrl = env.conf.latest;
+  var tryUrl = env.conf.try;
+
+  var header = '';
+  header += '<a href="' + indexUrl + '"><strong>' + title + '</strong></a>';
+  header += '<ul>';
+  header += '<li><a href="' + tryUrl +  '">Try</a></li>';
+  header += '<li><a href="' + latestUrl +  '">Latest Docs</a></li>';
+  header += '<li><a href="' + githubUrl +  '">GitHub</a></li>';
+  header += '<li><a href="' + gitterUrl + '">Discuss</a></li>';
+  header += '</ul>';
+
+  return header;
 }
 
 /**
@@ -590,6 +619,7 @@ exports.publish = function(taffyData, opts, tutorials) {
 
     // once for all
     view.nav = buildNav(members);
+    view.header = buildHeader();
     attachModuleSymbols( find({ longname: {left: 'module:'} }), members.modules );
 
     // generate the pretty-printed source files first so other pages can link to them
@@ -604,8 +634,9 @@ exports.publish = function(taffyData, opts, tutorials) {
     // index page displays information from package.json and lists files
     var files = find({kind: 'file'});
     var packages = find({kind: 'package'});
+    var moduleName = (env.conf.title || 'Home') +  ' ' + (packageInfo && packageInfo.version || '');
 
-    generate('', 'Home',
+  generate('', moduleName,
         packages.concat(
             [{kind: 'mainpage', readme: opts.readme, longname: (opts.mainpagetitle) ? opts.mainpagetitle : 'Main Page'}]
         ).concat(files),

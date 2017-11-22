@@ -11,9 +11,9 @@ html, body {
 
 body {
   color: #4d4e53;
-  background-color: white;
+  background-color: #F8F8F8;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 20px 0 0;
   font-family: 'Helvetica Neue', Helvetica, sans-serif;
   font-size: 16px;
   line-height: 160%;
@@ -21,6 +21,10 @@ body {
 
 img {
   max-width: 100%;
+}
+
+.hidden {
+  visibility: hidden;
 }
 
 a,
@@ -62,8 +66,9 @@ h1 {
 }
 
 h1.page-title {
-  font-size: 48px;
+  /*font-size: 48px;*/
   margin: 1em 30px;
+  display: none;
 }
 
 h2 {
@@ -133,7 +138,7 @@ tt, code, kbd, samp {
 #main {
   float: right;
   min-width: 360px;
-  width: calc(100% - 240px);
+  width: calc(100% - 270px);
 }
 
 header {
@@ -144,6 +149,10 @@ section {
   display: block;
   background-color: #fff;
   padding: 0 0 0 30px;
+  border: 1px solid #CCCCCC;
+  border-radius: 5px;
+  margin-left: 30px;
+  margin-top: 15px;
 }
 
 .variation {
@@ -160,22 +169,22 @@ section {
 nav {
   float: left;
   display: block;
-  width: 250px;
-  background: #fff;
+  width: 280px;
+  background-color: #F8F8F8;
   overflow: auto;
   position: fixed;
   height: 100%;
+  border-right: 1px solid #CCCCCC;
 }
 
 nav h3 {
-  margin-top: 12px;
   font-size: 13px;
   text-transform: uppercase;
   letter-spacing: 1px;
   font-weight: 700;
   line-height: 24px;
   margin: 15px 0 10px;
-  padding: 0;
+  padding: 0 0 0 20px;
   color: #000;
 }
 
@@ -190,11 +199,10 @@ nav ul {
 
 nav ul a,
 nav ul a:active {
-  font-family: 'Montserrat', sans-serif;
+  font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
   line-height: 18px;
-  padding: 0;
   display: block;
-  font-size: 12px;
+  font-size: 14px;
 }
 
 nav a:hover,
@@ -203,7 +211,7 @@ nav a:active {
 }
 
 nav > ul {
-  padding: 0 10px;
+  padding: 0 0 0 20px;
 }
 
 nav > ul > li > a {
@@ -220,12 +228,12 @@ nav ul ul + ul {
 
 nav ul ul a {
   color: hsl(207, 1%, 60%);
-  border-left: 1px solid hsl(207, 10%, 86%);
+  /*border-left: 1px solid hsl(207, 10%, 86%);*/
 }
 
 nav ul ul a,
 nav ul ul a:active {
-  padding-left: 20px
+  padding-left: 9px;
 }
 
 nav h2 {
@@ -242,7 +250,7 @@ nav > h2 > a {
 
 footer {
   color: hsl(0, 0%, 28%);
-  margin-left: 250px;
+  margin-left: 290px;
   display: block;
   padding: 15px;
   font-style: italic;
@@ -314,8 +322,17 @@ footer {
 }
 
 .details pre.prettyprint {
-   margin: 0
+  margin: 0;
 }
+
+.details .tag-sig {
+  margin: 0
+}
+
+.details .tag-sig li {
+  margin-left: 80px;
+}
+
 
 .details .object-value {
    padding-top: 0
@@ -335,6 +352,7 @@ footer {
 .prettyprint {
   font-size: 14px;
   overflow: auto;
+  background-color: #000000;
 }
 
 .prettyprint.source {
@@ -407,7 +425,7 @@ footer {
 }
 
 .params .type {
-  white-space: nowrap;
+  white-space: normal;
 }
 
 .params code {
@@ -421,7 +439,7 @@ footer {
 }
 
 .params td, .params th, .props td, .props th {
-   margin: 0px;
+   margin: 0;
    text-align: left;
    vertical-align: top;
    padding: 10px;
@@ -568,6 +586,25 @@ span.param-type, .params td .param-type, .param-type dd {
           transform: scale(0.75) rotate(45deg);
 }
 
+.label {
+  display: inline;
+  padding: .2em .6em .3em;
+  font-size: 75%;
+  font-weight: 700;
+  line-height: 1;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: .25em;
+}
+
+.label-category {
+  background: #e1d0e6;
+  color: #849;
+  float: right;
+}
+
 .nav-trigger:checked ~ nav {
   left: 0 !important;
 }
@@ -646,4 +683,110 @@ span.param-type, .params td .param-type, .param-type dd {
   display: inline-block;
   margin-left: -14px;
   margin-right: 5px;
+}
+
+[data-type="method"] {
+  padding-right: 4px;
+}
+[data-type="method"]:hover {
+  background-color: #e4e4e4 !important;
+}
+[data-type="method"] a {
+  padding-top: 7px;
+  padding-bottom: 7px;
+  color: #ad6cbe;
+  font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+/** Custom extensions **/
+body > header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: block;
+  min-height: 50px;
+  margin-bottom: 20px;
+}
+
+body > header {
+  color: #fff;
+  background-color: #849;
+  box-shadow: 0 .25em .5em #d3d3d3;
+  border-bottom: 1px solid #d3d3d3;
+  margin: 0;
+  padding: .75em 10px .75em 40px;
+  z-index: 1000;
+}
+
+body > header a {
+  color: #e1d0e6;
+}
+
+body > header > ul {
+  float: right;
+  margin: 0;
+}
+
+body > header > ul li {
+  position: relative;
+  float: left;
+  display: block;
+}
+
+body > header > ul li a {
+  padding: 10px 15px;
+  font-size: 14px;
+}
+body > header > ul li a:hover {
+  color: #fff;
+}
+
+body > nav {
+  top: 100px;
+  padding-bottom: 10px;
+  height: calc(100% - 100px);
+}
+
+#main {
+  margin-top: 50px;
+}
+
+#filter {
+  position: fixed;
+  top: 50px;
+  left: 0;
+  width: 280px;
+  height: 50px;
+  background-color: #F4F4F4;
+  border-bottom: 1px solid #CCCCCC;
+  border-right: 1px solid #CCCCCC;
+}
+
+#filter input {
+  width: 240px;
+  height: 30px;
+  line-height: 30px;
+  margin-left: 20px;
+  margin-top: 10px;
+  border: 1px solid #ccc;
+  font-size: 15px;
+  border-radius: 4px;
+  padding-left: 10px;
+}
+
+#filter input:focus {
+  outline: none !important;
+  border-color: #884499;
+  box-shadow: 0 0 3px #884499;
+}
+
+#filter input::placeholder {
+  color: #CCCCCC;
+}
+
+.section-id {
+  height: 0;
+  position: relative;
+  top: -50px;
 }

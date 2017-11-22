@@ -117,12 +117,54 @@ if (data.defaultvalue && (data.defaultvaluetype === 'object' || data.defaultvalu
     </dd>
     <?js } ?>
 
+    <?js if (data.sig && sig.length) {?>
+    <dt class="tag-sig">Signature:</dt>
+    <dd class="tag-sig">
+        <ul>
+            <?js data.sig.forEach(function(sig) { ?>
+              <li><code><?js= sig ?></code></li>
+            <?js }) ?>
+        </ul>
+    </dd>
+    <?js if (data.typedef && typedef.length) {?>
+        <dt class="tag-sig hidden">Signature:</dt>
+        <dd class="tag-sig">
+            <ul>
+                <?js data.typedef.forEach(function(typedef) { ?>
+                  <li><code><?js= typedef ?></code></li>
+                <?js }) ?>
+            </ul>
+        </dd>
+    <?js } ?>
+    <?js } ?>
+
+    <?js if (data.alias && alias.length) {?>
+    <dt class="tag-category">Aliases:</dt>
+    <dd class="tag-category">
+        <ul><li><i><?js= data.alias ?></i></li></ul>
+    </dd>
+    <?js } ?>
+
+    <?js if (data.aliases && aliases.length) {?>
+    <dt class="tag-category">Aliases:</dt>
+    <dd class="tag-category">
+        <ul><li><i><?js= data.aliases ?></i></li></ul>
+    </dd>
+    <?js } ?>
+
+    <?js if (data.category && category.length) {?>
+    <dt class="tag-category">Category:</dt>
+    <dd class="tag-category">
+        <ul><li><i><?js= data.category ?></i></li></ul>
+    </dd>
+    <?js } ?>
+
     <?js if (data.see && see.length) {?>
-    <dt class="tag-see">See:</dt>
+    <dt class="tag-see">See also:</dt>
     <dd class="tag-see">
         <ul><?js see.forEach(function(s) { ?>
             <li><?js= self.linkto(s) ?></li>
-        <?js }); ?></ul>
+            <?js }); ?></ul>
     </dd>
     <?js } ?>
 
