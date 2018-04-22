@@ -75,9 +75,11 @@
     <?js if (doc.requires && doc.requires.length) { ?>
         <h3 class="subsection-title">Requires</h3>
 
-        <ul><?js doc.requires.forEach(function(r) { ?>
-            <li><?js= self.linkto(r, r) ?></li>
-        <?js }); ?></ul>
+        <pre class="prettyprint"><code>
+        <?js doc.requires.forEach(function(r) { ?>
+        <?js= self.linkto(r, r).replace(/module\:(.+)/, 'import $1 from \'$1\'').replace(/(import )(\.\/.+)( from.+)/, `$1myModule$3`) ?>
+        <?js }); ?>
+        </code></pre>
     <?js } ?>
 
     <?js
