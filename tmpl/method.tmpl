@@ -6,6 +6,10 @@ var self = this;
     <?js if (data.kind === 'class' && data.classdesc) { ?>
     <h2>Constructor</h2>
     <?js } ?>
+    
+    <?js if (data.kind !== 'class') { ?>
+    <h5><i class="fas fa-cogs" style="width: 1em; color: #555;"></i> <?js= name ?></h5>
+    <?js } ?>
 
     <h4 class="name" id="<?js= id ?>"><?js= data.attribs + (kind === 'class' ? 'new ' : '') +
     name + (data.signature || '') ?></h4>
@@ -86,14 +90,8 @@ var self = this;
 } } ?>
 
 <?js if (data.returns && returns.length) { ?>
-<h5>Returns:</h5>
-<?js if (returns.length > 1) { ?><ul><?js
-    returns.forEach(function(r) { ?>
-        <li><?js= self.partial('returns.tmpl', r) ?></li>
-    <?js });
-?></ul><?js } else {
-    returns.forEach(function(r) { ?>
-        <?js= self.partial('returns.tmpl', r) ?>
-    <?js });
-} } ?>
+    <h5>Returns:</h5>
+    <?js= this.partial('params.tmpl', returns) ?>
+<?js } ?>
 
+<br><hr><br>
