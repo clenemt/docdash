@@ -77,7 +77,7 @@
 
         <pre class="prettyprint"><code style="padding: 0em;">
         <?js doc.requires.forEach(function(r) { ?>
-        <?js= self.linkto(r, r).replace(/module\:([a-z\-]+)\:?([\.\/\w\-]+)?/, (full, g1, g2) => { if(g2) { return `import { ${g1} } from '${g2}'` } else { return `import ${g1.replace(/-([a-z])/g, (full) => { return full[1].toUpperCase(); })} from '${g1}'` } }) ?>
+        <?js= self.linkto(r, r).replace(/module\:([a-z\-]+)\:?([\.\/\w\-]+)?/i, (full, g1, g2) => { if(g2) { return `import { ${g1} } from '${g2}'` } else { return `import ${g1.replace(/-([a-z])/g, (full) => { return full[1].toUpperCase(); })} from '${g1}'` } }) ?>
         <?js }); ?>
         </code></pre>
     <?js } ?>
