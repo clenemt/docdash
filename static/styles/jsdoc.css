@@ -25,7 +25,7 @@ img {
 
 a,
 a:active {
-  color: #606;
+  color: #E06C75;
   text-decoration: none;
 }
 
@@ -84,7 +84,7 @@ h4 {
 
 h4.name {
   color: #fff;
-  background: #6d426d;
+  background: #282C34;
   box-shadow: 0 .25em .5em #d3d3d3;
   border-top: 1px solid #d3d3d3;
   border-bottom: 1px solid #d3d3d3;
@@ -199,7 +199,7 @@ nav ul a:active {
 
 nav a:hover,
 nav a:active {
-  color: #606;
+  color: #C675BD;
 }
 
 nav > ul {
@@ -207,7 +207,7 @@ nav > ul {
 }
 
 nav > ul > li > a {
-  color: #606;
+  color: #C675BD;
 }
 
 nav ul ul {
@@ -237,7 +237,7 @@ nav h2 {
 nav > h2 > a {
    display: block;
    margin: 10px 0 -10px;
-   color: #606 !important;
+   color: #C69A66 !important;
 }
 
 footer {
@@ -271,7 +271,7 @@ footer {
 }
 
 .type-signature {
-  color: #CA79CA
+  color: #98C379
 }
 
 .type-signature:last-child {
@@ -283,7 +283,7 @@ footer {
 }
 
 .signature {
-    color: #fc83ff;
+    color: #C675BD;
 }
 
 .details {
@@ -341,14 +341,14 @@ footer {
   width: inherit;
   line-height: 18px;
   display: block;
-  background-color: #0d152a;
+  background-color: #282C34;
   color: #aeaeae;
 }
 
 .prettyprint code {
   line-height: 18px;
   display: block;
-  background-color: #0d152a;
+  background-color: #282C34;
   color: #4D4E53;
 }
 

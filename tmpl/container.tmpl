@@ -21,13 +21,6 @@
 
 <header>
     <?js if (!doc.longname || doc.kind !== 'module') { ?>
-        <h2><?js if (doc.ancestors && doc.ancestors.length) { ?>
-            <span class="ancestors"><?js= doc.ancestors.join('') ?></span>
-        <?js } ?>
-        <?js= doc.name ?>
-        <?js if (doc.variation) { ?>
-            <sup class="variation"><?js= doc.variation ?></sup>
-        <?js } ?></h2>
         <?js if (doc.classdesc) { ?>
             <div class="class-description"><?js= doc.classdesc ?></div>
         <?js } ?>
@@ -75,9 +68,11 @@
     <?js if (doc.requires && doc.requires.length) { ?>
         <h3 class="subsection-title">Requires</h3>
 
-        <ul><?js doc.requires.forEach(function(r) { ?>
-            <li><?js= self.linkto(r, r) ?></li>
-        <?js }); ?></ul>
+        <pre class="prettyprint"><code style="padding: 0em;">
+        <?js doc.requires.forEach(function(r) { ?>
+        <?js= self.linkto(r, r).replace(/module\:([*a-z\-\,\s]+)\:?([\.\/\w\-]+)?/i, (full, g1, g2) => { if(g2) { return `import ${g1.match(/\*/) ? '' : '{ '}${g1.replace(/,/g, ', ').replace('*', '')}${g1.match(/\*/) ? '' : ' }'} from '${g2}';` } else { return `import ${g1.replace(/-([a-z])/g, (full) => { return full[1].toUpperCase(); })} from '${g1}';` } }) ?>
+        <?js }); ?>
+        </code></pre>
     <?js } ?>
 
     <?js

@@ -2,7 +2,12 @@
 var data = obj;
 var self = this;
 ?>
-<h4 class="name" id="<?js= id ?>"><?js= data.attribs + name + (data.signature ? data.signature : '') ?></h4>
+
+<?js if (data.kind !== 'class') { ?>
+  <h5><i class="fas fa-cube" style="width: 1em; color: #555;"></i> <?js= name ?></h5>
+<?js } ?>
+
+<h4 class="name" id="<?js= id ?>"><?js= data.attribs.replace('(static, ', '(') + name + (data.signature ? data.signature : '') ?></h4>
 
 <?js if (data.summary) { ?>
 <p class="summary"><?js= summary ?></p>
@@ -36,3 +41,5 @@ var self = this;
     <h5>Example<?js= examples.length > 1? 's':'' ?></h5>
     <?js= this.partial('examples.tmpl', examples) ?>
 <?js } ?>
+
+<br><hr><br>
