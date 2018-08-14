@@ -611,7 +611,7 @@ exports.publish = function(taffyData, opts, tutorials) {
     members.tutorials = tutorials.children;
 
     // output pretty-printed source files by default
-    var outputSourceFiles = conf.default && conf.default.outputSourceFiles !== false
+    var outputSourceFiles = conf.default && conf.outputSourceFiles !== false
         ? true
         : false;
 
