@@ -10,3 +10,20 @@ function scrollToNavItem() {
   }
 
   scrollToNavItem();
+
+  /** 
+   * The doc is deployed in a non root directory,
+   * an error will occur when returning home.
+   * @description
+   *  location.href/doc/ 
+   *  location.href/
+  */
+  function goHome() {
+    var pathnames = window.location.pathname.split('/')
+    if (pathnames.length > 2) {
+      var path = window.location.origin + '/' + pathnames[1] + '/'
+      window.location.href = path
+    } else {
+      window.location.href = window.location.origin
+    }
+  }

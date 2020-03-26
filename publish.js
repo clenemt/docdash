@@ -426,7 +426,9 @@ function linktoExternal(longName, name) {
  */
 
 function buildNav(members) {
-    var nav = '<h2><a href="index.html">Home</a></h2>';
+    // var nav = '<h2><a href="index.html">Home</a></h2>';
+    // redirect to home page via js
+    var nav = '<h2><a style="cursor:pointer;" onclick="goHome();">Home</a></h2>';
     var seen = {};
     var seenTutorials = {};
     var docdash = env && env.conf && env.conf.docdash || {};
