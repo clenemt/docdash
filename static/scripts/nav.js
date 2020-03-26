@@ -20,10 +20,9 @@ function scrollToNavItem() {
   */
   function goHome() {
     var pathnames = window.location.pathname.split('/')
+    let originPath = window.location.origin
     if (pathnames.length > 2) {
-      var path = window.location.origin + '/' + pathnames[1] + '/'
-      window.location.href = path
-    } else {
-      window.location.href = window.location.origin
+      originPath = window.location.origin + '/' + pathnames[1] + '/'
     }
+    window.location.href = originPath
   }
