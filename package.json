@@ -12,6 +12,11 @@
     "type": "git",
     "url": "https://github.com/clenemt/docdash.git"
   },
+  "dependencies": {
+    "hyphenation.en-gb": "^0.2.1",
+    "hypher": "^0.2.5",
+    "jsdom": "^15.1.1"
+  },
   "devDependencies": {
     "jsdoc": "latest",
     "browser-sync": "latest",
