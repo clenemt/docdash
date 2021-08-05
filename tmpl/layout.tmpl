@@ -44,6 +44,7 @@
     <?js if (env.conf.docdash.search) { ?>
     <input type="text" id="nav-search" placeholder="Search" />
     <?js } ?>
+    <h3><?js= this.module.name ?> <?js= this.module.groupVersion ?> (<?js= this.module.version ?>)</h3>
     <?js if (!env.conf.docdash.commonNav) { ?>
     <?js= this.nav ?>
     <?js } ?>
