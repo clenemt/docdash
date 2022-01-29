@@ -6,8 +6,12 @@
         var nameArr = name.split(/[\.~#]/);
         var resolvedName = nameArr[nameArr.length - 1];
         if (name.startsWith("Array.<")) {
-                    resolvedName = resolvedName.replace(">", "");
-                    var longname = name.replace("Array.<","").replace(">", "");
+            if (nameArr.length === 2) {
+                resolvedName = name;
+            } else {
+                resolvedName = resolvedName.replace(">", "");
+                var longname = name.replace("Array.<","").replace(">", "");
+            }
         }
     } else {
         var resolvedName = name;
