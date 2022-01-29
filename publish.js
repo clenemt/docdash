@@ -380,9 +380,15 @@ function buildMemberNav(items, itemHeading, itemsSeen, linktoFn) {
 
                         var navItem = '';
                         var navItemLink = linkto(method.longname, method.name);
-                        var strNewLink = '.html#' + method.name;
 
-                        navItemLink = navItemLink.replace('.html', strNewLink);
+                        // Not certain if there is a situation where this is needed anymore
+                        // linkto method seems to solve this problem already, but at least this check
+                        // will prevent duplicate #'s in links.
+                        if (!navItemLink.includes("#." + method.name)) {
+                            var strNewLink = '.html#.' + method.name;
+
+                            navItemLink = navItemLink.replace(".html", strNewLink);
+                        }
 
                         navItem += "<li data-type='method'";
                         if(docdash.collapse)
