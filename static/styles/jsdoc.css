@@ -713,6 +713,17 @@ html[data-search-mode] .level-hide {
   margin-right: 5px;
 }
 
+/** Add a '●' to typedef static members */
+[data-type="typedef"] a::before {
+  content: '\25CF';
+  font-size: .55rem;
+  position: relative;
+  top: -2px;
+  display: inline-block;
+  margin-left: -14px;
+  margin-right: 5px;
+}
+
 #disqus_thread{
     margin-left: 30px;
 }
