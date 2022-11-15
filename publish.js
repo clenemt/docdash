@@ -332,6 +332,7 @@ function buildMemberNav(items, itemHeading, itemsSeen, linktoFn) {
             var displayName;
             var methods = find({kind:'function', memberof: item.longname});
             var members = find({kind:'member', memberof: item.longname});
+            var typedefs = find({kind:'typedef', memberof: item.longname});
             var conf = env && env.conf || {};
             var classes = '';
 
@@ -398,6 +399,22 @@ function buildMemberNav(items, itemHeading, itemsSeen, linktoFn) {
                         navItem += "</li>";
 
                         itemsNav += navItem;
+                    });
+
+                    itemsNav += "</ul>";
+                }
+
+                if (docdash.typedefs && typedefs.find(function (m) { return m.scope === 'static'; } )) {
+                    itemsNav += "<ul class='typedefs'>";
+
+                    typedefs.forEach(function (typedef) {
+                        if (!typedef.scope === 'static') return;
+                        itemsNav += "<li data-type='typedef'";
+                        if(docdash.collapse)
+                            itemsNav += " style='display: none;'";
+                        itemsNav += ">";
+                        itemsNav += linkto(typedef.longname, typedef.name);
+                        itemsNav += "</li>";
                     });
 
                     itemsNav += "</ul>";
@@ -475,7 +492,7 @@ function buildNav(members) {
 
         members.globals.forEach(function(g) {
             if ( (docdash.typedefs || g.kind !== 'typedef') && !hasOwnProp.call(seen, g.longname) ) {
-                globalNav += '<li>' + linkto(g.longname, g.name) + '</li>';
+                globalNav += '<li data-type="typedef">' + linkto(g.longname, g.name) + '</li>';
             }
             seen[g.longname] = true;
         });
