@@ -627,8 +627,24 @@ exports.publish = function(taffyData, opts, tutorials) {
         }
     }
     
+    var version = packageInfo.version;
+
+    if (opts.resolution === 'minor') {
+        version = version.replace(/\.[0-9]+$/, '.x');
+    } else if (opts.resolution === 'major') {
+        version = version.replace(/\.[0-9]+\.[0-9]+$/, '.x.x');
+    }
+    if (packageInfo && packageInfo.name) {
+        outdir = path.join( outdir, packageInfo.name, (version || '') );
+    }
     fs.mkPath(outdir);
 
+    view.module = {
+        name: packageInfo.name,
+        version: packageInfo.version,
+        groupVersion: version
+    };
+    
     // copy the template's static files to outdir
     var fromDir = path.join(templatePath, 'static');
     var staticFiles = fs.ls(fromDir, 3);
