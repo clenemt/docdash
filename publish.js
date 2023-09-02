@@ -9,7 +9,11 @@ var path = require('jsdoc/path');
 var taffy = require('@jsdoc/salty').taffy;
 var template = require('jsdoc/template');
 var util = require('util');
+var jsdom = require('jsdom');
+var Hypher = require('hypher');
+var hypher_en = require('hyphenation.en-gb');
 
+var hypher = new Hypher(hypher_en);
 var htmlsafe = helper.htmlsafe;
 var linkto = helper.linkto;
 var resolveAuthorLinks = helper.resolveAuthorLinks;
@@ -502,6 +506,35 @@ function buildNav(members) {
     return nav;
 }
 
+function hyphenate_dom(node) {
+  if (node.nodeName === '#text') {
+    node.nodeValue = hypher.hyphenateText(node.nodeValue);
+  }
+  for (const child of node.childNodes) {
+    hyphenate_dom(child);
+  }
+}
+
+function hyphenate_prop(obj, prop) {
+  var dom = new jsdom.JSDOM(obj[prop]);
+  hyphenate_dom(dom.window.document.body);
+  obj[prop] = dom.window.document.body.innerHTML;
+}
+
+function hyphenate_doclet(doclet) {
+  hyphenate_prop(doclet, 'classdoc');
+  hyphenate_prop(doclet, 'description');
+  for (const param of doclet.params || []) {
+      hyphenate_prop(param, 'description');
+  }
+  for (const prop of doclet.properties || []) {
+      hyphenate_prop(prop, 'description');
+  }
+  for (const ret of doclet.returns || []) {
+      hyphenate_prop(ret, 'description');
+  }
+}
+
 /**
     @param {TAFFY} taffyData See <http://taffydb.com/>.
     @param {object} opts
@@ -563,8 +596,10 @@ exports.publish = function(taffyData, opts, tutorials) {
                     doclet.longname = doclet.longname.replace(/^'(.*)'$/, '$1');
                 }
             }
-         }
-         doclet.attribs = '';
+        }
+        doclet.attribs = '';
+
+        hyphenate_doclet(doclet);
 
         if (doclet.examples) {
             doclet.examples = doclet.examples.map(function(example) {
