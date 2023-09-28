@@ -3,6 +3,7 @@
 <head>
     <?js if (!env.conf.docdash) { env.conf.docdash = {};} ?>
     <meta charset="utf-8">
+    <link rel="icon" type="image/x-icon" href="<?js= (env.conf.docdash.favicon ?? "/favicon.ico") ?>" />
     <title><?js= title ?> - <?js= ((env.conf.docdash.meta && env.conf.docdash.meta.title) || "Documentation") ?></title>
     <?js if (env.conf.docdash.meta) { ?>
     <?js if (env.conf.docdash.meta.description) { ?><meta name="description" content="<?js= env.conf.docdash.meta.description ?>" /><?js } ?>
